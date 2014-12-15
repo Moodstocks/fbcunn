@@ -1,0 +1,29 @@
+<p><a name="fbcunn.SparseConverter.dok"></a></p>
+
+<h2>fbcunn.SparseConverter</h2>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/SparseConverter.lua#L14">[src]</a>
+<a name="fbcunn.SparseConverter"></a></p>
+
+<h3>fbcunn.SparseConverter(fconv,bconv,dim,thresh)</h3>
+
+<p>Parameters:</p>
+
+<ul>
+<li><code>fconv</code> - conversion to perform in fprop, either &#39;StoD&#39;,&#39;DtoS&#39; or nil</li>
+<li><code>bconv</code> - conversion to perform in bprop, either &#39;StoD&#39;,&#39;DtoS&#39; or nil</li>
+<li><code>dim</code> - number of dimensions</li>
+<li><code>thresh</code> - threshold for sparsifying (0 by default)</li>
+</ul>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.SparseConverter:updateOutput"></a></p>
+
+<ul>
+<li><code>fbcunn.SparseConverter:updateOutput(input)</code>
+<a name="fbcunn.SparseConverter:updateGradInput"></a></li>
+<li><code>fbcunn.SparseConverter:updateGradInput(input, gradOutput)</code></li>
+</ul>

@@ -1,0 +1,1163 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<title>fbcunn - Documentation</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea'],
+          displayMath: [['$${', '}$$']],
+          inlineMath: [['${', '}$']]
+      }
+  });
+  MathJax.Hub.Queue(function() {
+      // Fix <code> tags after MathJax finishes running. This is a
+      // hack to overcome a shortcoming of Markdown. Discussion at
+      // https://github.com/mojombo/jekyll/issues/199
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i = 0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        $('pre code').each(function(i, e) {
+            var par = $(e).closest('pre');
+            if (! $(par).hasClass('has-jax')) {
+                hljs.highlightBlock(e);
+            }
+        });
+    });
+</script>
+
+
+
+<script src="../search.js"></script>
+<script type="text/javascript"> addSearchFormHeader(); </script>
+<script type="text/javascript">
+$(document).ready(function() {
+    /* Fix up any badly formed anchors */
+    $("a").each(function(i, e) {
+        if (!e.href) {
+            $(e).addClass('anchor');
+            var inner = $(e).html();
+            $(e).html("");
+            $(e).after(inner);
+        }
+    })
+})
+</script>
+</head>
+<body>
+<header>
+<ul>Navigation:
+<li><a href="../index.html">research-docs</a></li>
+<li><a href="https://github.com/facebook/fbcunn">fbcunn github</a></li>
+<li><a href="#">top of this page</a></li>
+</ul>
+</header>
+<div class="wrapper">
+<div id="navcontainer"><ul>
+<li>
+<ul>
+<li><a href="#fbcunn.README.`fbcunn`">`fbcunn`</a>
+    <ul>
+    <li><a href="#fbcunn.README.License">License</a></li>
+    </ul>
+</li>
+</ul>
+</li>
+<hr>
+       <li><a href="#fbcunn.fbcunn.dok">fbcunn</a>
+       <ul>
+              <li><a href="#fbcunn.fbcunn.AbstractParallel.dok">AbstractParallel</a></li>
+              <li><a href="#fbcunn.fbcunn.DataParallel.dok">DataParallel</a></li>
+              <li><a href="#fbcunn.fbcunn.ModelParallel.dok">ModelParallel</a></li>
+              <li><a href="#fbcunn.fbcunn.OneBitDataParallel.dok">OneBitDataParallel</a></li>
+              <li><a href="#fbcunn.fbcunn.OneBitSGD.dok">OneBitSGD</a></li>
+       </ul>
+       </li>
+       <li><a href="#fbcunn.layers.dok">layers</a>
+       <ul>
+              <li><a href="#fbcunn.layers.ClassHierarchicalNLLCriterion.dok">ClassHierarchicalNLLCriterion</a></li>
+              <li><a href="#fbcunn.layers.CrossMapNormalization.dok">CrossMapNormalization</a></li>
+              <li><a href="#fbcunn.layers.GroupKMaxPooling.dok">GroupKMaxPooling</a></li>
+              <li><a href="#fbcunn.layers.HSM.dok">HSM</a></li>
+              <li><a href="#fbcunn.layers.KMaxPooling.dok">KMaxPooling</a></li>
+              <li><a href="#fbcunn.layers.LinearNB.dok">LinearNB</a></li>
+              <li><a href="#fbcunn.layers.LocallyConnected.dok">LocallyConnected</a></li>
+              <li><a href="#fbcunn.layers.LookupTableGPU.dok">LookupTableGPU</a></li>
+              <li><a href="#fbcunn.layers.SequentialCriterion.dok">SequentialCriterion</a></li>
+              <li><a href="#fbcunn.layers.SparseConverter.dok">SparseConverter</a></li>
+              <li><a href="#fbcunn.layers.SparseKmax.dok">SparseKmax</a></li>
+              <li><a href="#fbcunn.layers.SparseLookupTable.dok">SparseLookupTable</a></li>
+              <li><a href="#fbcunn.layers.SparseNLLCriterion.dok">SparseNLLCriterion</a></li>
+              <li><a href="#fbcunn.layers.SparseSum.dok">SparseSum</a></li>
+              <li><a href="#fbcunn.layers.SparseThreshold.dok">SparseThreshold</a></li>
+              <li><a href="#fbcunn.layers.WeightedLookupTable.dok">WeightedLookupTable</a></li>
+              <li><a href="#fbcunn.layers.cuda.dok">cuda</a>
+              <ul>
+                     <li><a href="#fbcunn.layers.cuda.CuBLASWrapper.dok">CuBLASWrapper</a></li>
+                     <li><a href="#fbcunn.layers.cuda.FeatureLPPooling.dok">FeatureLPPooling</a></li>
+                     <li><a href="#fbcunn.layers.cuda.HalfPrecision.dok">HalfPrecision</a></li>
+                     <li><a href="#fbcunn.layers.cuda.OneBitQuantization.dok">OneBitQuantization</a></li>
+                     <li><a href="#fbcunn.layers.cuda.TemporalConvolutionFB.dok">TemporalConvolutionFB</a></li>
+                     <li><a href="#fbcunn.layers.cuda.TemporalKMaxPooling.dok">TemporalKMaxPooling</a></li>
+                     <li><a href="#fbcunn.layers.cuda.fft.dok">fft</a>
+                     <ul>
+                            <li><a href="#fbcunn.layers.cuda.fft.FFTWrapper.dok">FFTWrapper</a></li>
+                            <li><a href="#fbcunn.layers.cuda.fft.SpatialConvolutionCuFFT.dok">SpatialConvolutionCuFFT</a></li>
+                     </ul>
+                     </li>
+              </ul>
+              </li>
+       </ul>
+       </li>
+</ul>
+</div>
+<section>
+<div class='docSection'><a name="fbcunn.README.dok"></a><p><a id="fbcunn.README.`fbcunn`"></a></p>
+
+<h1><code>fbcunn</code></h1>
+
+<p>Facebook&#39;s extensions to <a href="https://github.com/torch/cunn">https://github.com/torch/cunn</a>.</p>
+
+<p>This is an early release version to allow the community early access.
+Expect rapid improvements (CMake scripts, LuaRocks, documentation, etc).</p>
+
+<p><a id="fbcunn.README.License"></a></p>
+
+<h2>License</h2>
+
+<p><code>fbcunn</code> is BSD-licensed. We also provide an additional patent
+grant.</p>
+</div><div class='docSection'><a name="fbcunn.fbcunn.AbstractParallel.dok"></a><h3>AbstractParallel.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.AbstractParallel.dok"></a></p>
+
+<h2>fbcunn.AbstractParallel</h2>
+
+<p><code>nn.AbstractParallel</code> is the base class for modules controlling
+data/model-parallel behaviour in Torch.</p>
+
+<p>The key concept is that data/model-parallelism <em>splits</em> along a
+dimension, and this class controls the distribution of input and
+merging of output along this dimension.</p>
+
+<p>To extend this class, override <code>_distributeInput</code> as appropriate.</p>
+
+<p>See <code>nn.DataParallel</code> and <code>nn.ModelParallel</code> for examples of usage.</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/fbcunn/AbstractParallel.lua#L74">[src]</a>
+<a name="fbcunn.AbstractParallel:nextGPU"></a></p>
+
+<h3>fbcunn.AbstractParallel:nextGPU()</h3>
+
+<p>This function yields the GPU id for the module to be added.</p>
+
+<p>It can be used for load balancing. It assumes all GPUs are available.</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/fbcunn/AbstractParallel.lua#L105">[src]</a>
+<a name="fbcunn.AbstractParallel:gpuSend"></a></p>
+
+<h3>fbcunn.AbstractParallel:gpuSend(dest, source)</h3>
+
+<p>Asynchronous copy from dest to source.</p>
+
+<p>Use with caution; there needs to be some sort of external synchronization to
+prevent source from being modified after this copy is enqueued.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.AbstractParallel"></a></p>
+
+<ul>
+<li><code>fbcunn.AbstractParallel(dimension)</code>
+<a name="fbcunn.AbstractParallel:add"></a></li>
+<li><code>fbcunn.AbstractParallel:add(module, gpuid)</code>
+<a name="fbcunn.AbstractParallel:get"></a></li>
+<li><code>fbcunn.AbstractParallel:get(index)</code>
+<a name="fbcunn.AbstractParallel:updateOutput"></a></li>
+<li><code>fbcunn.AbstractParallel:updateOutput(input)</code>
+<a name="fbcunn.AbstractParallel:updateGradInput"></a></li>
+<li><code>fbcunn.AbstractParallel:updateGradInput(_input, gradOutput)</code>
+<a name="fbcunn.AbstractParallel:accGradParameters"></a></li>
+<li><code>fbcunn.AbstractParallel:accGradParameters(_input, _gradOutput, scale)</code>
+<a name="fbcunn.AbstractParallel:accUpdateGradParameters"></a></li>
+<li><code>fbcunn.AbstractParallel:accUpdateGradParameters(_input, _gradOutput, lr)</code>
+<a name="fbcunn.AbstractParallel:zeroGradParameters"></a></li>
+<li><code>fbcunn.AbstractParallel:zeroGradParameters()</code>
+<a name="fbcunn.AbstractParallel:updateParameters"></a></li>
+<li><code>fbcunn.AbstractParallel:updateParameters(learningRate)</code>
+<a name="fbcunn.AbstractParallel:share"></a></li>
+<li><code>fbcunn.AbstractParallel:share(mlp,...)</code>
+<a name="fbcunn.AbstractParallel:clone"></a></li>
+<li><code>fbcunn.AbstractParallel:clone()</code>
+<a name="fbcunn.AbstractParallel:reset"></a></li>
+<li><code>fbcunn.AbstractParallel:reset(stdv)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.fbcunn.DataParallel.dok"></a><h3>DataParallel.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.
+This file defines an example class</p>
+
+<p><a name="fbcunn.DataParallel.dok"></a></p>
+
+<h2>fbcunn.DataParallel</h2>
+
+<p>DataParallel splits the input along separate columns, that run the
+same models on distinct partitions of the input.</p>
+
+<p>Pictorially</p>
+
+<pre><code>                        +--------+
+        column 1        |        |         column 3
+           +------------+  Input +-------------+
+           |            |        |             |
+           |            +----+---+             |
+           |                 |                 |
+           |                 |                 |
+      +----+---+        +----+---+        +----+---+
+      |        |        |        |        |        |
+      | Linear |        | Linear |        | Linear |       row 1
+      |        |        |        |        |        |
+      +----+---+        +----+---+        +----+---+
+           |                 |                 |
+           |                 |                 |
+      +----+---+        +----+---+        +----+---+
+      |        |        |        |        |        |
+      |  Tanh  |        |  Tanh  |        |  Tanh  |       row 2
+      |        |        |        |        |        |
+      +----+---+        +----+---+        +----+---+
+           |                 |                 |
+           |                 |                 |
+           |                 |                 |
+           |            +----+---+             |
+           |            |        |             |
+           +------------+ Output +-------------+
+                        |        |
+                        +--------+
+</code></pre>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.DataParallel:name"></a></p>
+
+<ul>
+<li><code>fbcunn.DataParallel:name()</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.fbcunn.ModelParallel.dok"></a><h3>ModelParallel.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.ModelParallel.dok"></a></p>
+
+<h2>fbcunn.ModelParallel</h2>
+
+<p><code>ModelParallel</code> copies inputs to all child modules, and runs
+disjoint parts of the model on separate devices.</p>
+
+<p>For example, consider a convolutional layer with a large number of
+filter banks. ModelParallel will split the model along the given
+<code>dimension</code> (e.g. 2 if we lay the input out as <code>BDWH</code>), copy the input
+to each device, and then merge the outputs across the device.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.ModelParallel"></a></p>
+
+<ul>
+<li><code>fbcunn.ModelParallel(dimension)</code>
+<a name="fbcunn.ModelParallel:nextGPU"></a></li>
+<li><code>fbcunn.ModelParallel:nextGPU()</code>
+<a name="fbcunn.ModelParallel:add"></a></li>
+<li><code>fbcunn.ModelParallel:add(module, gpuid)</code>
+<a name="fbcunn.ModelParallel:get"></a></li>
+<li><code>fbcunn.ModelParallel:get(index)</code>
+<a name="fbcunn.ModelParallel:name"></a></li>
+<li><code>fbcunn.ModelParallel:name()</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.fbcunn.OneBitDataParallel.dok"></a><p><a name="fbcunn.OneBitDataParallel.dok"></a></p>
+
+<h2>fbcunn.OneBitDataParallel</h2>
+
+<p>OneBitDataParallel implements the &quot;1-Bit Stochastic Gradient
+Descent and Application to Data-Parallel Distributed Training of
+Speech DNNs&quot; paper of Frank Seide, Hao Fu, Jasha Droppo, Gang Li, and
+Dong Yu.</p>
+
+<p>The implementation is similar to a vanilla DataParallel module, except we replace the averaging gradient step with a quantize-copy-merge-broadcast procedure.</p>
+
+<p><a href="http://research.microsoft.com/apps/pubs/?id=230137">http://research.microsoft.com/apps/pubs/?id=230137</a></p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.OneBitDataParallel"></a></p>
+
+<ul>
+<li><code>fbcunn.OneBitDataParallel(dimension, config)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.fbcunn.OneBitSGD.dok"></a><h3>OneBitSGD.lua</h3>
+
+<p>OneBitSGD contains various utility functions for use in OneBitDataParallel, exported for unit testing purposes.</p>
+</div><div class='docSection'><a name="fbcunn.layers.ClassHierarchicalNLLCriterion.dok"></a><h3>ClassHierarchicalNLLCriterion.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.ClassHierarchicalNLLCriterion.dok"></a></p>
+
+<h2>fbcunn.ClassHierarchicalNLLCriterion</h2>
+
+<p>Hierarchical softmax classifier with two levels and arbitrary clusters.</p>
+
+<p>Note:
+This criterion does include the lower layer parameters
+(this is more <code>Linear</code> + <code>ClassNLLCriterion</code>, but hierarchical).
+Also, this layer does not support the use of mini-batches
+(only 1 sample at the time).</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L25">[src]</a>
+<a name="fbcunn.ClassHierarchicalNLLCriterion"></a></p>
+
+<h3>fbcunn.ClassHierarchicalNLLCriterion(mapping, clusterCounts, inputSize)</h3>
+
+<p>Parameters:</p>
+
+<ul>
+<li><code>mapping</code> is a tensor with as many elements as classes.
+<code>mapping[i][1]</code> stores the cluster id, and <code>mapping[i][2]</code> the class id within
+that cluster of the <code>${i}$</code> th class.</li>
+<li><code>clusterCounts</code> is a vector with as many entry as clusters.
+clusterCounts[i] stores the number of classes in the i-th cluster.</li>
+<li> <code>inputSize</code> is the number of input features</li>
+</ul>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L66">[src]</a>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:updateOutput"></a></p>
+
+<h3>fbcunn.ClassHierarchicalNLLCriterion:updateOutput(input, target)</h3>
+
+<p><code>target</code> is the class id</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L112">[src]</a>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:updateGradInput"></a></p>
+
+<h3>fbcunn.ClassHierarchicalNLLCriterion:updateGradInput(input, target)</h3>
+
+<p>This computes derivatives w.r.t. input and parameters.</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L138">[src]</a>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:updateParameters"></a></p>
+
+<h3>fbcunn.ClassHierarchicalNLLCriterion:updateParameters(learningRate)</h3>
+
+<p>Update parameters (only those that are used to process this sample).</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L150">[src]</a>
+<a name="fbcunn.sampleMultiNomial"></a></p>
+
+<h3>fbcunn.sampleMultiNomial(input)</h3>
+
+<p>input is a vector of probabilities (non-negative and sums to 1).</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L164">[src]</a>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:infer"></a></p>
+
+<h3>fbcunn.ClassHierarchicalNLLCriterion:infer(input, sampling)</h3>
+
+<p>Inference of the output (to be used at test time only)
+If sampling flag is set to true, then the output label is sampled
+o/w the most likely class is provided.</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L202">[src]</a>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:eval"></a></p>
+
+<h3>fbcunn.ClassHierarchicalNLLCriterion:eval(input, target)</h3>
+
+<p>Given some label, it computes the logprob and the ranking error.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.ClassHierarchicalNLLCriterion:zeroGradParameters"></a></p>
+
+<ul>
+<li><code>fbcunn.ClassHierarchicalNLLCriterion:zeroGradParameters()</code>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:zeroGradParametersCluster"></a></li>
+<li><code>fbcunn.ClassHierarchicalNLLCriterion:zeroGradParametersCluster()</code>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:zeroGradParametersClass"></a></li>
+<li><code>fbcunn.ClassHierarchicalNLLCriterion:zeroGradParametersClass(target)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.CrossMapNormalization.dok"></a><h3>CrossMapNormalization.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.CrossMapNormalization.dok"></a></p>
+
+<h2>fbcunn.CrossMapNormalization</h2>
+
+<p>Cross-map normalization, see
+<a href="https://code.google.com/p/cuda-convnet/wiki/LayerParams#Local_response_normalization_layer_(across_maps)">https://code.google.com/p/cuda-convnet/wiki/LayerParams#Local_response_normalization_layer_(across_maps)</a></p>
+
+<p>formula:</p>
+
+<p><code>$${f(u_{f}^{x,y})=\frac{u_{f}^{x,y}}{ (1+\frac{\alpha}{N} \sum_{f&#39;=\max(0,F-\lfloor N/2\rfloor )}^{\min(F,f-\lfloor N/2 \rfloor+N) }(u_{f&#39;}^{x,y})^{2})^{\beta}}}$$</code> </p>
+
+<p>where</p>
+
+<ul>
+<li><code>${F}$</code> is the number of features, </li>
+<li><code>${N}$</code> is the neighborhood size (size),</li>
+<li><code>${\alpha}$</code> is the scaling factor (scale),</li>
+<li><code>${\beta}$</code> is the exponent (power)</li>
+</ul>
+
+<p>This layer normalizes values across feature maps (each spatial location
+independently). Borders are zero-padded.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><code>size</code>: size of the neighborhood (typical value: 5)</li>
+<li><code>scale</code>: scaling factor (typical value: 0.0001)</li>
+<li><code>power</code>: exponent used (typical value: 0.75)</li>
+</ul>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.CrossMapNormalization"></a></p>
+
+<ul>
+<li><code>fbcunn.CrossMapNormalization(size, scale, power)</code>
+<a name="fbcunn.CrossMapNormalization:updateOutput"></a></li>
+<li><code>fbcunn.CrossMapNormalization:updateOutput(input)</code>
+<a name="fbcunn.CrossMapNormalization:updateGradInput"></a></li>
+<li><code>fbcunn.CrossMapNormalization:updateGradInput(input, gradOutput)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.GroupKMaxPooling.dok"></a><h3>GroupKMaxPooling.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.GroupKMaxPooling.dok"></a></p>
+
+<h2>fbcunn.GroupKMaxPooling</h2>
+
+<p>Group k-max pooling performs pooling along a dimension of arbitrary length
+(e.g. a sentence) down to a length of <code>${k}$</code> </p>
+
+<p>Given a matrix where rows are words and columns are embedding dimensions, we
+compute the <code>${L^2}$</code> norm of each word:</p>
+
+<pre><code>   o---------o
+w1 |         | -&gt; norm1
+w2 |         | -&gt; norm2
+w3 |         | -&gt; norm3
+w4 |         | -&gt; norm4
+   o---------o
+</code></pre>
+
+<p>Group K-max pooling keeps the K words with largest norm and discards the
+rest.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.GroupKMaxPooling"></a></p>
+
+<ul>
+<li><code>fbcunn.GroupKMaxPooling(k, k_dynamic)</code>
+<a name="fbcunn.GroupKMaxPooling:updateOutput"></a></li>
+<li><code>fbcunn.GroupKMaxPooling:updateOutput(input)</code>
+<a name="fbcunn.GroupKMaxPooling:updateGradInput"></a></li>
+<li><code>fbcunn.GroupKMaxPooling:updateGradInput(input, gradOutput)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.HSM.dok"></a><h3>HSM.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.
+Author: Michael Mathieu <a href="mailto:myrhev@fb.com">myrhev@fb.com</a></p>
+
+<p><a name="fbcunn.HSM.dok"></a></p>
+
+<h2>fbcunn.HSM</h2>
+
+<p>Hierarchical soft max with minibatches.</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/HSM.lua#L24">[src]</a>
+<a name="fbcunn.HSM"></a></p>
+
+<h3>fbcunn.HSM(mapping, input_size, unk_index)</h3>
+
+<p>Parameters:</p>
+
+<ul>
+<li><code>mapping</code> is a table (or tensor) with <code>n_classes</code> elements,
+such that <code>mapping[i]</code> is a table with 2 elements.
+
+<ul>
+<li><code>mapping[i][1]</code> : index (1-based) of the cluster of class <code>i</code></li>
+<li><code>mapping[i][2]</code> : index (1-based) of the index within its cluster of class <code>i</code></li>
+</ul></li>
+<li> <code>input_size</code> is the number of elements of the previous layer</li>
+<li> <code>unk_index</code> is an index that is ignored at test time (not added to the
+loss). It can be disabled by setting it to 0 (not nil).
+It should only be used uring testing (since during training,
+it is not disabled in the backprop (TODO) )</li>
+</ul>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/HSM.lua#L226">[src]</a>
+<a name="fbcunn.HSM:updateGradInput"></a></p>
+
+<h3>fbcunn.HSM:updateGradInput(input, target)</h3>
+
+<p>Note: call this function at most once after each call <code>updateOutput</code>,
+or the output will be wrong (it uses <code>class_score</code> and <code>cluster_score</code>
+as temporary buffers)</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/HSM.lua#L270">[src]</a>
+<a name="fbcunn.HSM:accGradParameters"></a></p>
+
+<h3>fbcunn.HSM:accGradParameters(input, target, scale, direct_update)</h3>
+
+<p>If <code>direct_update</code> is set, the parameters are directly updated (not the
+gradients). It means that the gradient tensors (like <code>cluster_grad_weight</code>)
+are not used. scale must be set to the negative learning rate
+(<code>-learning_rate</code>). <code>direct_update</code> mode is much faster.
+Before calling this function you have to call <code>HSM:updateGradInput</code> first.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.HSM:clone"></a></p>
+
+<ul>
+<li><code>fbcunn.HSM:clone(...)</code>
+<a name="fbcunn.HSM:check_mapping"></a></li>
+<li><code>fbcunn.HSM:check_mapping(mapping)</code>
+<a name="fbcunn.HSM:get_n_class_in_cluster"></a></li>
+<li><code>fbcunn.HSM:get_n_class_in_cluster(mapping)</code>
+<a name="fbcunn.HSM:parameters"></a></li>
+<li><code>fbcunn.HSM:parameters()</code>
+<a name="fbcunn.HSM:getParameters"></a></li>
+<li><code>fbcunn.HSM:getParameters()</code>
+<a name="fbcunn.HSM:reset"></a></li>
+<li><code>fbcunn.HSM:reset(weight_stdv, bias_stdv)</code>
+<a name="fbcunn.HSM:updateOutput"></a></li>
+<li><code>fbcunn.HSM:updateOutput(input, target)</code>
+<a name="fbcunn.HSM:updateOutputCPU"></a></li>
+<li><code>fbcunn.HSM:updateOutputCPU(input, target)</code>
+<a name="fbcunn.HSM:updateOutputCUDA"></a></li>
+<li><code>fbcunn.HSM:updateOutputCUDA(input, target)</code>
+<a name="fbcunn.HSM:updateGradInputCPU"></a></li>
+<li><code>fbcunn.HSM:updateGradInputCPU(input, target)</code>
+<a name="fbcunn.HSM:updateGradInputCUDA"></a></li>
+<li><code>fbcunn.HSM:updateGradInputCUDA(input, target)</code>
+<a name="fbcunn.HSM:backward"></a></li>
+<li><code>fbcunn.HSM:backward(input, target, scale)</code>
+<a name="fbcunn.HSM:updateParameters"></a></li>
+<li><code>fbcunn.HSM:updateParameters(learning_rate)</code>
+<a name="fbcunn.HSM:zeroGradParameters"></a></li>
+<li><code>fbcunn.HSM:zeroGradParameters()</code>
+<a name="fbcunn.HSM:zeroGradParametersClass"></a></li>
+<li><code>fbcunn.HSM:zeroGradParametersClass(input, target)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.KMaxPooling.dok"></a><p><a name="fbcunn.KMaxPooling.dok"></a></p>
+
+<h2>fbcunn.KMaxPooling</h2>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.KMaxPooling"></a></p>
+
+<ul>
+<li><code>fbcunn.KMaxPooling(k, k_dynamic)</code>
+<a name="fbcunn.KMaxPooling:updateOutput"></a></li>
+<li><code>fbcunn.KMaxPooling:updateOutput(input, input_info)</code>
+<a name="fbcunn.KMaxPooling:updateGradInput"></a></li>
+<li><code>fbcunn.KMaxPooling:updateGradInput(input, gradOutput)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.LinearNB.dok"></a><p><a name="fbcunn.LinearNB.dok"></a></p>
+
+<h2>fbcunn.LinearNB</h2>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.LinearNB"></a></p>
+
+<ul>
+<li><code>fbcunn.LinearNB(inputSize, outputSize)</code>
+<a name="fbcunn.LinearNB:reset"></a></li>
+<li><code>fbcunn.LinearNB:reset(stdv)</code>
+<a name="fbcunn.LinearNB:updateOutput"></a></li>
+<li><code>fbcunn.LinearNB:updateOutput(input)</code>
+<a name="fbcunn.LinearNB:updateGradInput"></a></li>
+<li><code>fbcunn.LinearNB:updateGradInput(input, gradOutput)</code>
+<a name="fbcunn.LinearNB:accGradParameters"></a></li>
+<li><code>fbcunn.LinearNB:accGradParameters(input, gradOutput, scale)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.LocallyConnected.dok"></a><h3>LocallyConnected.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.LocallyConnected.dok"></a></p>
+
+<h2>fbcunn.LocallyConnected</h2>
+
+<p>LocallyConnected layer</p>
+
+<p>See <a href="https://code.google.com/p/cuda-convnet/wiki/LayerParams#Locally-connected_layer_with_unshared_weights">https://code.google.com/p/cuda-convnet/wiki/LayerParams#Locally-connected_layer_with_unshared_weights</a></p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.LocallyConnected"></a></p>
+
+<ul>
+<li><code>fbcunn.LocallyConnected(nInputPlane, iW, iH, nOutputPlane, kW, kH,
+                             dW, dH)</code>
+<a name="fbcunn.LocallyConnected:outputSize"></a></li>
+<li><code>fbcunn.LocallyConnected:outputSize()</code>
+<a name="fbcunn.LocallyConnected:reset"></a></li>
+<li><code>fbcunn.LocallyConnected:reset(stdv)</code>
+<a name="fbcunn.LocallyConnected:updateOutput"></a></li>
+<li><code>fbcunn.LocallyConnected:updateOutput(input)</code>
+<a name="fbcunn.LocallyConnected:updateGradInput"></a></li>
+<li><code>fbcunn.LocallyConnected:updateGradInput(input, gradOutput)</code>
+<a name="fbcunn.LocallyConnected:accGradParameters"></a></li>
+<li><code>fbcunn.LocallyConnected:accGradParameters(input, gradOutput, scale)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.LookupTableGPU.dok"></a><h3>LookupTableGPU.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.
+Author: Michael Mathieu <a href="mailto:myrhev@fb.com">myrhev@fb.com</a></p>
+
+<p><a name="fbcunn.LookupTableGPU.dok"></a></p>
+
+<h2>fbcunn.LookupTableGPU</h2>
+
+<p>Fast lookup table, supporting both CPU and GPU modes.</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/LookupTableGPU.lua#L19">[src]</a>
+<a name="fbcunn.LookupTableGPU"></a></p>
+
+<h3>fbcunn.LookupTableGPU(nInput, nOutput, featuresInDim2)</h3>
+
+<p>If <code>featuresInDim2</code> is <code>true</code>, an input of dimension <code>batchSize</code> <code>${\times}$</code> <code>N</code> will produce an output of size <code>batchSize</code> <code>${\times}$</code> <code>nOutput</code> <code>${\times}$</code> <code>N</code>. If it is set to <code>false</code> (default) it will produce an output
+of size <code>batchSize</code> <code>${\times}$</code> <code>N</code> <code>${\times}$</code> <code>nOutput</code>.</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/LookupTableGPU.lua#L42">[src]</a>
+<a name="fbcunn.LookupTableGPU:updateOutput"></a></p>
+
+<h3>fbcunn.LookupTableGPU:updateOutput(input)</h3>
+
+<p>input should be a 1d (size N) or 2d (size batchSize x N)
+tensor of byte or long on CPU, cudaTensor on GPU.
+It contains the indices of the lookup.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.LookupTableGPU:reset"></a></p>
+
+<ul>
+<li><code>fbcunn.LookupTableGPU:reset(stdv)</code>
+<a name="fbcunn.LookupTableGPU:parameters"></a></li>
+<li><code>fbcunn.LookupTableGPU:parameters()</code>
+<a name="fbcunn.LookupTableGPU:updateGradInput"></a></li>
+<li><code>fbcunn.LookupTableGPU:updateGradInput(input, gradOutput)</code>
+<a name="fbcunn.LookupTableGPU:accGradParameters"></a></li>
+<li><code>fbcunn.LookupTableGPU:accGradParameters(input, gradOutput, scale)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.SequentialCriterion.dok"></a><h3>SequentialCriterion.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.
+Author: Michael Mathieu <a href="mailto:myrhev@fb.com">myrhev@fb.com</a></p>
+
+<p><a name="fbcunn.SequentialCriterion.dok"></a></p>
+
+<h2>fbcunn.SequentialCriterion</h2>
+
+<p>Combines a module and a criterion.</p>
+
+<p>It is mainly thought for preprocessing, but trainable parameters
+can be used if needed</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.SequentialCriterion"></a></p>
+
+<ul>
+<li><code>fbcunn.SequentialCriterion(module, criterion)</code>
+<a name="fbcunn.SequentialCriterion:parameters"></a></li>
+<li><code>fbcunn.SequentialCriterion:parameters()</code>
+<a name="fbcunn.SequentialCriterion:getParameters"></a></li>
+<li><code>fbcunn.SequentialCriterion:getParameters()</code>
+<a name="fbcunn.SequentialCriterion:updateOutput"></a></li>
+<li><code>fbcunn.SequentialCriterion:updateOutput(input, target)</code>
+<a name="fbcunn.SequentialCriterion:updateGradInput"></a></li>
+<li><code>fbcunn.SequentialCriterion:updateGradInput(input, target)</code>
+<a name="fbcunn.SequentialCriterion:accGradParameters"></a></li>
+<li><code>fbcunn.SequentialCriterion:accGradParameters(input, target, scale)</code>
+<a name="fbcunn.SequentialCriterion:accUpdateGradParameters"></a></li>
+<li><code>fbcunn.SequentialCriterion:accUpdateGradParameters(input, target, scale)</code>
+<a name="fbcunn.SequentialCriterion:updateParameters"></a></li>
+<li><code>fbcunn.SequentialCriterion:updateParameters(learning_rate)</code>
+<a name="fbcunn.SequentialCriterion:zeroGradParameters"></a></li>
+<li><code>fbcunn.SequentialCriterion:zeroGradParameters()</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.SparseConverter.dok"></a><p><a name="fbcunn.SparseConverter.dok"></a></p>
+
+<h2>fbcunn.SparseConverter</h2>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/SparseConverter.lua#L14">[src]</a>
+<a name="fbcunn.SparseConverter"></a></p>
+
+<h3>fbcunn.SparseConverter(fconv,bconv,dim,thresh)</h3>
+
+<p>Parameters:</p>
+
+<ul>
+<li><code>fconv</code> - conversion to perform in fprop, either &#39;StoD&#39;,&#39;DtoS&#39; or nil</li>
+<li><code>bconv</code> - conversion to perform in bprop, either &#39;StoD&#39;,&#39;DtoS&#39; or nil</li>
+<li><code>dim</code> - number of dimensions</li>
+<li><code>thresh</code> - threshold for sparsifying (0 by default)</li>
+</ul>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.SparseConverter:updateOutput"></a></p>
+
+<ul>
+<li><code>fbcunn.SparseConverter:updateOutput(input)</code>
+<a name="fbcunn.SparseConverter:updateGradInput"></a></li>
+<li><code>fbcunn.SparseConverter:updateGradInput(input, gradOutput)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.SparseKmax.dok"></a><h3>SparseKmax.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.SparseKmax.dok"></a></p>
+
+<h2>fbcunn.SparseKmax</h2>
+
+<p>This module performs a sparse embedding with the following process:</p>
+
+<ol>
+<li>Perform a dense embedding</li>
+<li>Apply a linear transformation (to high dimensional space)</li>
+<li>Make the output k-sparse</li>
+</ol>
+
+<p>The parameters of the dense embedding and the linear transformation are 
+learned. Since the fprop may be slow, we keep a candidate set for each word
+which consists of the most likely indices to be turned on after the k-max
+operation. We record the number of activations for each member of this set,
+and periodically resize it to keep only the most active indices. 
+Thus the initial training with large candidate sets will be slow, but will
+get faster and faster as we restrict their sizes.</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/SparseKmax.lua#L31">[src]</a>
+<a name="fbcunn.SparseKmax"></a></p>
+
+<h3>fbcunn.SparseKmax(vocabSize,nDenseDim,nSparseDim,k,nCandidates)</h3>
+
+<p>Parameters:</p>
+
+<ul>
+<li><code>vocabSize</code> - number of entries in the dense lookup table</li>
+<li><code>nDenseDim</code> - number of dimensions for initial dense embedding</li>
+<li><code>nSparseDim</code> - number of dimensions for final sparse embedding</li>
+<li><code>k</code> - number of nonzeros in sparse space</li>
+<li><code>nCandidates</code> - initial size of the candidate set</li>
+</ul>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/SparseKmax.lua#L93">[src]</a>
+<a name="fbcunn.SparseKmax:updateCandidateSets"></a></p>
+
+<h3>fbcunn.SparseKmax:updateCandidateSets(nCandidates)</h3>
+
+<p>Update the candidate set based on the counts of activations.
+<code>nCandidates</code> is the size of the new candidate sets.</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/SparseKmax.lua#L110">[src]</a>
+<a name="fbcunn.SparseKmax:accUpdateGradParameters"></a></p>
+
+<h3>fbcunn.SparseKmax:accUpdateGradParameters(input, gradOutput, lr)</h3>
+
+<p>Note, we assume <code>gradOutput</code> is sparse since the output is sparse as well.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.SparseKmax:reset"></a></p>
+
+<ul>
+<li><code>fbcunn.SparseKmax:reset(stdv)</code>
+<a name="fbcunn.SparseKmax:updateOutput"></a></li>
+<li><code>fbcunn.SparseKmax:updateOutput(input)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.SparseLookupTable.dok"></a><h3>SparseLookupTable.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.SparseLookupTable.dok"></a></p>
+
+<h2>fbcunn.SparseLookupTable</h2>
+
+<p>Sparse lookup table. Similar to the regular LookupTable.lua module, 
+except for the following differences:</p>
+
+<ol>
+<li>The outputs are in sparse format.</li>
+<li>The inputs are pairs (i,w), so the output corresponding to index i
+is scaled by w.</li>
+<li>The indices are fixed, i.e. during a parameter update only the nonzero 
+coefficents are updated. This is to avoid having to create new indices, 
+which is expensive and may result in the weights no longer being sparse.</li>
+</ol>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/SparseLookupTable.lua#L23">[src]</a>
+<a name="fbcunn.SparseLookupTable"></a></p>
+
+<h3>fbcunn.SparseLookupTable(indices,sparseGrad)</h3>
+
+<p>Parameters:</p>
+
+<ul>
+<li><code>indices</code> is a 2D matrix of indices which will be nonzero.</li>
+<li><code>sparseGrad</code> indicates whether incoming gradients will be sparse or dense.</li>
+</ul>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.SparseLookupTable:reset"></a></p>
+
+<ul>
+<li><code>fbcunn.SparseLookupTable:reset(stdv)</code>
+<a name="fbcunn.SparseLookupTable:updateOutput"></a></li>
+<li><code>fbcunn.SparseLookupTable:updateOutput(input)</code>
+<a name="fbcunn.SparseLookupTable:accUpdateGradParameters"></a></li>
+<li><code>fbcunn.SparseLookupTable:accUpdateGradParameters(input, gradOutput,lr)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.SparseNLLCriterion.dok"></a><h3>SparseNLLCriterion.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.
+Author: Michael Mathieu <a href="mailto:myrhev@fb.com">myrhev@fb.com</a></p>
+
+<p><a name="fbcunn.SparseNLLCriterion.dok"></a></p>
+
+<h2>fbcunn.SparseNLLCriterion</h2>
+
+<p>Sparse ClassNLL criterion</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/SparseNLLCriterion.lua#L18">[src]</a>
+<a name="fbcunn.SparseNLLCriterion"></a></p>
+
+<h3>fbcunn.SparseNLLCriterion(K)</h3>
+
+<p>Parameters:</p>
+
+<ul>
+<li><code>K</code> : number of non-zero elements of the target</li>
+<li><code>do</code>_target_check : checks whether the target is a
+probability vector (default true)</li>
+<li><code>sizeAverage</code> : divides the error by the size of the minibatch</li>
+</ul>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/SparseNLLCriterion.lua#L38">[src]</a>
+<a name="fbcunn.SparseNLLCriterion:updateOutput"></a></p>
+
+<h3>fbcunn.SparseNLLCriterion:updateOutput(input, target)</h3>
+
+<p><code>target</code> should be a table containing two tensors :</p>
+
+<pre><code>target = {targetP, targetIdx}
+</code></pre>
+
+<p>where <code>targetP</code> are the probabilities associated to the indices <code>targetIdx</code>
+we assume <code>targetIdx</code> doesn&#39;t have twice the same number in the same sample.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.SparseNLLCriterion:updateGradInput"></a></p>
+
+<ul>
+<li><code>fbcunn.SparseNLLCriterion:updateGradInput(input, target)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.SparseSum.dok"></a><h3>SparseSum.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.SparseSum.dok"></a></p>
+
+<h2>fbcunn.SparseSum</h2>
+
+<p>Sum module for sparse vectors.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.SparseSum"></a></p>
+
+<ul>
+<li><code>fbcunn.SparseSum()</code>
+<a name="fbcunn.SparseSum:updateOutput"></a></li>
+<li><code>fbcunn.SparseSum:updateOutput(input)</code>
+<a name="fbcunn.SparseSum:updateGradInput"></a></li>
+<li><code>fbcunn.SparseSum:updateGradInput(input, gradOutput)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.SparseThreshold.dok"></a><h3>SparseThreshold.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.SparseThreshold.dok"></a></p>
+
+<h2>fbcunn.SparseThreshold</h2>
+
+<p>Same as Threshold module, for sparse vectors.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.SparseThreshold"></a></p>
+
+<ul>
+<li><code>fbcunn.SparseThreshold(th,v)</code>
+<a name="fbcunn.SparseThreshold:updateOutput"></a></li>
+<li><code>fbcunn.SparseThreshold:updateOutput(input)</code>
+<a name="fbcunn.SparseThreshold:updateGradInput"></a></li>
+<li><code>fbcunn.SparseThreshold:updateGradInput(input, gradOutput)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.WeightedLookupTable.dok"></a><h3>WeightedLookupTable.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.WeightedLookupTable.dok"></a></p>
+
+<h2>fbcunn.WeightedLookupTable</h2>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/WeightedLookupTable.lua#L52">[src]</a>
+<a name="fbcunn.WeightedLookupTable:updateOutput"></a></p>
+
+<h3>fbcunn.WeightedLookupTable:updateOutput(input)</h3>
+
+<p>Parameters:</p>
+
+<ul>
+<li><code>Input</code> should be an n x 2 tensor where the first column is dictionary indexes
+and the second column is weights.</li>
+</ul>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.WeightedLookupTable"></a></p>
+
+<ul>
+<li><code>fbcunn.WeightedLookupTable(nIndex, ...)</code>
+<a name="fbcunn.WeightedLookupTable:reset"></a></li>
+<li><code>fbcunn.WeightedLookupTable:reset(stdv)</code>
+<a name="fbcunn.WeightedLookupTable:zeroGradParameters"></a></li>
+<li><code>fbcunn.WeightedLookupTable:zeroGradParameters()</code>
+<a name="fbcunn.WeightedLookupTable:accGradParameters"></a></li>
+<li><code>fbcunn.WeightedLookupTable:accGradParameters(input, gradOutput, scale)</code>
+<a name="fbcunn.WeightedLookupTable:accUpdateGradParameters"></a></li>
+<li><code>fbcunn.WeightedLookupTable:accUpdateGradParameters(input, gradOutput, lr)</code>
+<a name="fbcunn.WeightedLookupTable:updateParameters"></a></li>
+<li><code>fbcunn.WeightedLookupTable:updateParameters(learningRate)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.cuda.CuBLASWrapper.dok"></a><p><a name="fbcunn.CuBLASWrapper.dok"></a></p>
+
+<h2>fbcunn.CuBLASWrapper</h2>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.CuBLASWrapper"></a></p>
+
+<ul>
+<li><code>fbcunn.CuBLASWrapper()</code>
+<a name="fbcunn.CuBLASWrapper:matmult"></a></li>
+<li><code>fbcunn.CuBLASWrapper:matmult(A, B, C, iterDims, batchDims, handles, streams)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.cuda.FeatureLPPooling.dok"></a><h3>FeatureLPPooling.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.FeatureLPPooling.dok"></a></p>
+
+<h2>fbcunn.FeatureLPPooling</h2>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/cuda/FeatureLPPooling.lua#L32">[src]</a>
+<a name="fbcunn.FeatureLPPooling"></a></p>
+
+<h3>fbcunn.FeatureLPPooling(width, stride, power, batch_mode)</h3>
+
+<p>Possible inputs that we handle:</p>
+
+<h4><code>batch_mode = false</code></h4>
+
+<p>The dimensionality of the input chooses between the following modes:</p>
+
+<pre><code>[feature dim]
+[feature dim][opt dim 1]
+[feature dim][opt dim 1][opt dim 2]
+</code></pre>
+
+<h4><code>batch_mode = true</code></h4>
+
+<p>The dimensionality of the input chooses between the following modes:</p>
+
+<pre><code>[batch dim][feature dim]
+[batch dim][feature dim][opt dim 1]
+[batch dim][feature dim][opt dim 1][opt dim 2]
+</code></pre>
+
+<p>The output has the same number of dimensions as the input, except the feature
+dimension size is reduced to ((<code>input</code> - <code>width</code>) / <code>stride</code>) + 1</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.FeatureLPPooling:updateOutput"></a></p>
+
+<ul>
+<li><code>fbcunn.FeatureLPPooling:updateOutput(input)</code>
+<a name="fbcunn.FeatureLPPooling:updateGradInput"></a></li>
+<li><code>fbcunn.FeatureLPPooling:updateGradInput(input, gradOutput)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.cuda.HalfPrecision.dok"></a><h3>HalfPrecision.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.HalfPrecision.dok"></a></p>
+
+<h2>fbcunn.HalfPrecision</h2>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.HalfPrecision"></a></p>
+
+<ul>
+<li><code>fbcunn.HalfPrecision()</code>
+<a name="fbcunn.HalfPrecision:updateOutput"></a></li>
+<li><code>fbcunn.HalfPrecision:updateOutput(input)</code>
+<a name="fbcunn.HalfPrecision:updateGradInput"></a></li>
+<li><code>fbcunn.HalfPrecision:updateGradInput(input, gradOutput)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.cuda.OneBitQuantization.dok"></a><h3>OneBitQuantization.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.OneBitQuantization.dok"></a></p>
+
+<h2>fbcunn.OneBitQuantization</h2>
+
+<p>CUDA implementation of the quantize/unquantize methods used by <code>nn.OneBitDataParallel</code>.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.OneBitQuantization"></a></p>
+
+<ul>
+<li><code>fbcunn.OneBitQuantization()</code>
+<a name="fbcunn.OneBitQuantization:reset"></a></li>
+<li><code>fbcunn.OneBitQuantization:reset()</code>
+<a name="fbcunn.OneBitQuantization:quantize"></a></li>
+<li><code>fbcunn.OneBitQuantization:quantize(non_quantized_input)</code>
+<a name="fbcunn.OneBitQuantization:dequantize"></a></li>
+<li><code>fbcunn.OneBitQuantization:dequantize(quantized_input,
+                                   avg_pos, avg_neg, num_orig_cols)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.cuda.TemporalConvolutionFB.dok"></a><h3>TemporalConvolutionFB.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.TemporalConvolutionFB.dok"></a></p>
+
+<h2>fbcunn.TemporalConvolutionFB</h2>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.TemporalConvolutionFB"></a></p>
+
+<ul>
+<li><code>fbcunn.TemporalConvolutionFB(inputFrameSize, outputFrameSize, kW, dW)</code>
+<a name="fbcunn.TemporalConvolutionFB:reset"></a></li>
+<li><code>fbcunn.TemporalConvolutionFB:reset(stdv)</code>
+<a name="fbcunn.TemporalConvolutionFB:updateOutput"></a></li>
+<li><code>fbcunn.TemporalConvolutionFB:updateOutput(input)</code>
+<a name="fbcunn.TemporalConvolutionFB:updateGradInput"></a></li>
+<li><code>fbcunn.TemporalConvolutionFB:updateGradInput(input, gradOutput)</code>
+<a name="fbcunn.TemporalConvolutionFB:accGradParameters"></a></li>
+<li><code>fbcunn.TemporalConvolutionFB:accGradParameters(input, gradOutput, scale)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.cuda.TemporalKMaxPooling.dok"></a><h3>TemporalKMaxPooling.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.TemporalKMaxPooling.dok"></a></p>
+
+<h2>fbcunn.TemporalKMaxPooling</h2>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.TemporalKMaxPooling"></a></p>
+
+<ul>
+<li><code>fbcunn.TemporalKMaxPooling(k, k_dynamic)</code>
+<a name="fbcunn.TemporalKMaxPooling:updateOutput"></a></li>
+<li><code>fbcunn.TemporalKMaxPooling:updateOutput(input)</code>
+<a name="fbcunn.TemporalKMaxPooling:updateGradInput"></a></li>
+<li><code>fbcunn.TemporalKMaxPooling:updateGradInput(input, gradOutput)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.cuda.fft.FFTWrapper.dok"></a><p><a name="fbcunn.FFTWrapper.dok"></a></p>
+
+<h2>fbcunn.FFTWrapper</h2>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.FFTWrapper"></a></p>
+
+<ul>
+<li><code>fbcunn.FFTWrapper(cufft)</code>
+<a name="fbcunn.FFTWrapper:fft"></a></li>
+<li><code>fbcunn.FFTWrapper:fft(time, frequency, batchDims)</code>
+<a name="fbcunn.FFTWrapper:ffti"></a></li>
+<li><code>fbcunn.FFTWrapper:ffti(time, frequency, batchDims)</code></li>
+</ul>
+</div><div class='docSection'><a name="fbcunn.layers.cuda.fft.SpatialConvolutionCuFFT.dok"></a><p><a name="fbcunn.SpatialConvolutionCuFFT.dok"></a></p>
+
+<h2>fbcunn.SpatialConvolutionCuFFT</h2>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.SpatialConvolutionCuFFT"></a></p>
+
+<ul>
+<li><code>fbcunn.SpatialConvolutionCuFFT(nInputPlane, nOutputPlane,
+                                    kW, kH, dW, dH, debug, printDebug)</code>
+<a name="fbcunn.SpatialConvolutionCuFFT:reset"></a></li>
+<li><code>fbcunn.SpatialConvolutionCuFFT:reset(stdv)</code>
+<a name="fbcunn.SpatialConvolutionCuFFT:updateOutput"></a></li>
+<li><code>fbcunn.SpatialConvolutionCuFFT:updateOutput(input)</code>
+<a name="fbcunn.SpatialConvolutionCuFFT:explorePerformance"></a></li>
+<li><code>fbcunn.SpatialConvolutionCuFFT:explorePerformance(input, batches,
+  inputs, planes, inputRows, inputCols, kernelRows, kernelCols)</code>
+<a name="fbcunn.SpatialConvolutionCuFFT:cleanupBuffers"></a></li>
+<li><code>fbcunn.SpatialConvolutionCuFFT:cleanupBuffers(input)</code>
+<a name="fbcunn.SpatialConvolutionCuFFT:updateGradInput"></a></li>
+<li><code>fbcunn.SpatialConvolutionCuFFT:updateGradInput(input, gradOutput)</code>
+<a name="fbcunn.SpatialConvolutionCuFFT:accGradParameters"></a></li>
+<li><code>fbcunn.SpatialConvolutionCuFFT:accGradParameters(input, gradOutput, scale)</code></li>
+</ul>
+</div>
+</section>
+</div>
+</body>
+</html>

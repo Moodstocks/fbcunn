@@ -1,0 +1,43 @@
+<h3>SparseLookupTable.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.SparseLookupTable.dok"></a></p>
+
+<h2>fbcunn.SparseLookupTable</h2>
+
+<p>Sparse lookup table. Similar to the regular LookupTable.lua module, 
+except for the following differences:</p>
+
+<ol>
+<li>The outputs are in sparse format.</li>
+<li>The inputs are pairs (i,w), so the output corresponding to index i
+is scaled by w.</li>
+<li>The indices are fixed, i.e. during a parameter update only the nonzero 
+coefficents are updated. This is to avoid having to create new indices, 
+which is expensive and may result in the weights no longer being sparse.</li>
+</ol>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/SparseLookupTable.lua#L23">[src]</a>
+<a name="fbcunn.SparseLookupTable"></a></p>
+
+<h3>fbcunn.SparseLookupTable(indices,sparseGrad)</h3>
+
+<p>Parameters:</p>
+
+<ul>
+<li><code>indices</code> is a 2D matrix of indices which will be nonzero.</li>
+<li><code>sparseGrad</code> indicates whether incoming gradients will be sparse or dense.</li>
+</ul>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.SparseLookupTable:reset"></a></p>
+
+<ul>
+<li><code>fbcunn.SparseLookupTable:reset(stdv)</code>
+<a name="fbcunn.SparseLookupTable:updateOutput"></a></li>
+<li><code>fbcunn.SparseLookupTable:updateOutput(input)</code>
+<a name="fbcunn.SparseLookupTable:accUpdateGradParameters"></a></li>
+<li><code>fbcunn.SparseLookupTable:accUpdateGradParameters(input, gradOutput,lr)</code></li>
+</ul>

@@ -1,0 +1,87 @@
+<h3>ClassHierarchicalNLLCriterion.lua</h3>
+
+<p>Copyright 2004-present Facebook. All Rights Reserved.</p>
+
+<p><a name="fbcunn.ClassHierarchicalNLLCriterion.dok"></a></p>
+
+<h2>fbcunn.ClassHierarchicalNLLCriterion</h2>
+
+<p>Hierarchical softmax classifier with two levels and arbitrary clusters.</p>
+
+<p>Note:
+This criterion does include the lower layer parameters
+(this is more <code>Linear</code> + <code>ClassNLLCriterion</code>, but hierarchical).
+Also, this layer does not support the use of mini-batches
+(only 1 sample at the time).</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L25">[src]</a>
+<a name="fbcunn.ClassHierarchicalNLLCriterion"></a></p>
+
+<h3>fbcunn.ClassHierarchicalNLLCriterion(mapping, clusterCounts, inputSize)</h3>
+
+<p>Parameters:</p>
+
+<ul>
+<li><code>mapping</code> is a tensor with as many elements as classes.
+<code>mapping[i][1]</code> stores the cluster id, and <code>mapping[i][2]</code> the class id within
+that cluster of the <code>${i}$</code> th class.</li>
+<li><code>clusterCounts</code> is a vector with as many entry as clusters.
+clusterCounts[i] stores the number of classes in the i-th cluster.</li>
+<li> <code>inputSize</code> is the number of input features</li>
+</ul>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L66">[src]</a>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:updateOutput"></a></p>
+
+<h3>fbcunn.ClassHierarchicalNLLCriterion:updateOutput(input, target)</h3>
+
+<p><code>target</code> is the class id</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L112">[src]</a>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:updateGradInput"></a></p>
+
+<h3>fbcunn.ClassHierarchicalNLLCriterion:updateGradInput(input, target)</h3>
+
+<p>This computes derivatives w.r.t. input and parameters.</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L138">[src]</a>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:updateParameters"></a></p>
+
+<h3>fbcunn.ClassHierarchicalNLLCriterion:updateParameters(learningRate)</h3>
+
+<p>Update parameters (only those that are used to process this sample).</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L150">[src]</a>
+<a name="fbcunn.sampleMultiNomial"></a></p>
+
+<h3>fbcunn.sampleMultiNomial(input)</h3>
+
+<p>input is a vector of probabilities (non-negative and sums to 1).</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L164">[src]</a>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:infer"></a></p>
+
+<h3>fbcunn.ClassHierarchicalNLLCriterion:infer(input, sampling)</h3>
+
+<p>Inference of the output (to be used at test time only)
+If sampling flag is set to true, then the output label is sampled
+o/w the most likely class is provided.</p>
+
+<p><a class="entityLink" href="https://github.com/facebook/fbcunn/blob/d84530ee7c84c5651f674d115a45e3ab8cbb39d2/layers/ClassHierarchicalNLLCriterion.lua#L202">[src]</a>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:eval"></a></p>
+
+<h3>fbcunn.ClassHierarchicalNLLCriterion:eval(input, target)</h3>
+
+<p>Given some label, it computes the logprob and the ranking error.</p>
+
+<h4>Undocumented methods</h4>
+
+<p><a name="fbcunn.ClassHierarchicalNLLCriterion:zeroGradParameters"></a></p>
+
+<ul>
+<li><code>fbcunn.ClassHierarchicalNLLCriterion:zeroGradParameters()</code>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:zeroGradParametersCluster"></a></li>
+<li><code>fbcunn.ClassHierarchicalNLLCriterion:zeroGradParametersCluster()</code>
+<a name="fbcunn.ClassHierarchicalNLLCriterion:zeroGradParametersClass"></a></li>
+<li><code>fbcunn.ClassHierarchicalNLLCriterion:zeroGradParametersClass(target)</code></li>
+</ul>

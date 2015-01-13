@@ -87,6 +87,7 @@ function train()
 
    -- set the dropouts to training mode
    model:training()
+   collectgarbage()
    model:cuda() -- get it back on the right GPUs.
 
    local tm = torch.Timer()
@@ -104,6 +105,7 @@ function train()
             local l_stg =  tonumber(ffi.cast('intptr_t', torch.pointer(labels:storage())))
             inputs:cdata().storage = nil
             labels:cdata().storage = nil
+            collectgarbage()
             return i_stg, l_stg
          end,
          -- the end callback (runs in the main thread)
@@ -113,7 +115,7 @@ function train()
 
    donkeys:synchronize()
    cutorch.synchronize()
-   
+
    top1_epoch = top1_epoch * 100 / (opt.batchSize * opt.epochSize)
    top5_epoch = top5_epoch * 100 / (opt.batchSize * opt.epochSize)
    loss_epoch = loss_epoch / opt.epochSize
@@ -130,12 +132,13 @@ function train()
    print('\n')
 
    -- save model
-   model:for_each(function(mod)
+   model:float()
+   local fmodel = model:clone() -- do clone on cpu
+   fmodel:for_each(function(mod)
                      -- Trim activations so the checkpoint is not too huge
                      mod.output = mod.output.new()
                      mod.gradInput = mod.gradInput.new()
    end)
-   local fmodel = model:clone():float()
    torch.save(paths.concat(opt.save, 'model_' .. epoch .. '.t7'), fmodel)
    torch.save(paths.concat(opt.save, 'optimState_' .. epoch .. '.t7'), optimState)
 end -- of train()
@@ -158,6 +161,7 @@ function trainBatch(dataPointer, labelPointer)
    setLongStorage(labelsCPU, labelPointer)
 
    -- transfer over to GPU
+   collectgarbage()
    inputs:copy(inputsCPU)
    labels:copy(labelsCPU)
 

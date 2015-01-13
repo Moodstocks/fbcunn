@@ -28,6 +28,8 @@ function test()
 
    -- set the dropouts to evaluate mode
    model:evaluate()
+   collectgarbage()
+   model:cuda()
 
    top1_center = 0; top5_center = 0
    top1_10crop = 0; top5_10crop = 0

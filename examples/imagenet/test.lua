@@ -43,6 +43,7 @@ function test()
             local l_stg =  tonumber(ffi.cast('intptr_t', torch.pointer(labels:storage())))
             inputs:cdata().storage = nil
             labels:cdata().storage = nil
+            collectgarbage()
             return i_stg, l_stg
          end,
          -- callback that is run in the main thread once the work is done

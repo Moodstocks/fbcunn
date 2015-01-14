@@ -49,7 +49,7 @@ function M.parse(arg)
     local opt = cmd:parse(arg or {})
     -- add commandline specified options
     opt.save = paths.concat(opt.cache,
-                            cmd:string('alexnet12', opt,
+                            cmd:string(opt.netType, opt,
                                        {retrain=true, optimState=true, cache=true, data=true}))
     -- add date/time
     opt.save = paths.concat(opt.save, ',' .. os.date():gsub(' ',''))

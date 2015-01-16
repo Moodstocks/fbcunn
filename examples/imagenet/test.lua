@@ -6,6 +6,7 @@
 --  LICENSE file in the root directory of this source tree. An additional grant
 --  of patent rights can be found in the PATENTS file in the same directory.
 --
+require 'xlua'
 testLogger = optim.Logger(paths.concat(opt.save, 'test.log'))
 
 local testDataIterator = function()
@@ -35,6 +36,7 @@ function test()
    top1_10crop = 0; top5_10crop = 0
    loss = 0
    for i=1,nTest/opt.testBatchSize do -- nTest is set in 1_data.lua
+      xlua.progress(i, math.floor(nTest/opt.testBatchSize + 0.5))
       local indexStart = (i-1) * opt.testBatchSize + 1
       local indexEnd = (indexStart + opt.testBatchSize - 1)
       donkeys:addjob(

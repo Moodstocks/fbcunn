@@ -80,9 +80,9 @@ function test()
 
 end -- of test()
 -----------------------------------------------------------------------------
-local inputsCPU = torch.Tensor(opt.testBatchSize*10, 3, 224, 224)
+local inputsCPU = torch.Tensor(opt.testBatchSize*10, 3, opt.inputSize, opt.inputSize)
 local labelsCPU = torch.LongTensor(opt.testBatchSize*10)
-local inputs = torch.CudaTensor(opt.testBatchSize*10, 3, 224, 224)
+local inputs = torch.CudaTensor(opt.testBatchSize*10, 3, opt.inputSize, opt.inputSize)
 local labels = torch.CudaTensor(opt.testBatchSize*10)
 
 function testBatch(dataPointer, labelPointer)

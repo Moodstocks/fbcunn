@@ -152,11 +152,11 @@ end -- of train()
 -------------------------------------------------------------------------------------------
 -- create tensor buffers in main thread and deallocate their storages.
 -- the thread loaders will push their storages to these buffers when done loading
-local inputsCPU = torch.Tensor(opt.batchSize, 3, 224, 224)
+local inputsCPU = torch.Tensor(opt.batchSize, 3, opt.inputSize, opt.inputSize)
 local labelsCPU = torch.LongTensor(opt.batchSize)
 
 -- GPU inputs (preallocate)
-local inputs = torch.CudaTensor(opt.batchSize, 3, 224, 224)
+local inputs = torch.CudaTensor(opt.batchSize, 3, opt.inputSize, opt.inputSize)
 local labels = torch.CudaTensor(opt.batchSize)
 
 local timer = torch.Timer()

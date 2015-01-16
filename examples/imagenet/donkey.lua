@@ -25,7 +25,7 @@ if not os.execute('cd ' .. opt.data) then
 end
 
 local loadSize   = {3, 256, 256}
-local sampleSize = {3, 224, 224}
+local sampleSize = {3, opt.inputSize, opt.inputSize}
 
 -- channel-wise mean and std. Calculate or load them from disk later in the script.
 local mean,std
@@ -74,7 +74,7 @@ else
    trainLoader = dataLoader{
       paths = {paths.concat(opt.data, 'train')},
       loadSize = {3, 256, 256},
-      sampleSize = {3, 224, 224},
+      sampleSize = {3, opt.inputSize, opt.inputSize},
       split = 100,
       verbose = true
    }
@@ -150,7 +150,7 @@ else
    testLoader = dataLoader{
       paths = {paths.concat(opt.data, 'val')},
       loadSize = {3, 256, 256},
-      sampleSize = {3, 224, 224},
+      sampleSize = {3, opt.inputSize, opt.inputSize},
       split = 0,
       verbose = true,
       forceClasses = trainLoader.classes -- force consistent class indices between trainLoader and testLoader

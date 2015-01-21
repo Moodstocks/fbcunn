@@ -71,12 +71,17 @@ if paths.filep(trainCache) then
    trainLoader.sampleHookTrain = trainHook
 else
    print('Creating train metadata')
+   local classes
+   if opt.classes ~= 'none' then
+      classes = dofile(opt.classes)
+   end
    trainLoader = dataLoader{
       paths = {paths.concat(opt.data, 'train')},
       loadSize = {3, 256, 256},
       sampleSize = {3, opt.inputSize, opt.inputSize},
       split = 100,
-      verbose = true
+      verbose = true,
+      forceClasses = classes
    }
    torch.save(trainCache, trainLoader)
    trainLoader.sampleHookTrain = trainHook

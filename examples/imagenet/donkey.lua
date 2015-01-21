@@ -56,7 +56,7 @@ local trainHook = function(self, path)
    -- do hflip with probability 0.5
    if torch.uniform() > 0.5 then out:flop(); end
 
-   if opt.norm then
+   if not opt.nonorm then
       out = out:toTensor('float','RGB','DHW')
       -- mean/std
       for i=1,3 do -- channels
@@ -125,7 +125,7 @@ local testHook = function(self, path)
    end
    iW, iH = input:size();
    local im
-   if opt.norm then
+   if not opt.nonorm then
       im = input:toTensor('float','RGB','DHW')
       -- mean/std
       for i=1,3 do -- channels
@@ -176,7 +176,7 @@ end
 collectgarbage()
 -- End of test loader section
 
-if opt.norm then
+if not opt.nonorm then
    -- Estimate the per-channel mean/std (so that the loaders can normalize appropriately)
    if paths.filep(meanstdCache) then
       local meanstd = torch.load(meanstdCache)
